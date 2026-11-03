@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عيد ميلاد محمد سالم 🎂</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top, #48216b, #10091f 75%);
+  color: white;
+  font-family: Tahoma, Arial, sans-serif;
+  text-align: center;
+}
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  padding: 45px 15px;
+}
+
+h1 {
+  color: #ffd76a;
+  font-size: 35px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px orange;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  to {
+    text-shadow: 0 0 35px gold, 0 0 55px orange;
+  }
+}
+
+.name {
+  font-size: 36px;
+  color: #ff9fc9;
+  margin: 15px 0;
+  text-shadow: 0 0 20px #ff55a5;
+}
+
+.age {
+  font-size: 125px;
+  font-weight: bold;
+  color: #ffd76a;
+  text-shadow: 0 0 30px orange;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-12px); }
+}
+
+.subtitle {
+  font-size: 19px;
+  line-height: 2;
+  color: #e7dafa;
+}
+
+.cake {
+  font-size: 105px;
+  margin: 25px;
+  animation: dance 2s infinite;
+}
+
+@keyframes dance {
+  0%,100% { transform: rotate(-7deg); }
+  50% { transform: rotate(7deg) scale(1.08); }
+}
+
+button {
+  border: none;
+  padding: 15px 25px;
+  margin: 10px;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #ffb52e, #ff4f91);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ff8c9f;
+  transition: .3s;
+}
+
+button:active {
+  transform: scale(.9);
+}
+
+.message {
+  display: none;
+  max-width: 450px;
+  margin: 25px auto;
+  padding: 25px;
+  border: 1px solid gold;
+  border-radius: 20px;
+  background: #ffffff15;
+  line-height: 2.2;
+  animation: appear .8s ease;
+  font-size: 18px;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.balloon {
+  position: fixed;
+  bottom: -100px;
+  font-size: 40px;
+  z-index: 1;
+  animation: fly linear forwards;
+}
+
+@keyframes fly {
+  to {
+    transform: translateY(-120vh) rotate(35deg);
+  }
+}
+
+.star {
+  position: fixed;
+  color: gold;
+  pointer-events: none;
+  animation: sparkle 2s infinite alternate;
+}
+
+@keyframes sparkle {
+  from { opacity: .2; transform: scale(.6); }
+  to { opacity: 1; transform: scale(1.4); }
+}
+
+.music-status {
+  color: #ffdb80;
+  margin: 12px;
+  font-size: 14px;
+}
+
+footer {
+  margin-top: 45px;
+  color: #b9a9d5;
+  font-size: 13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<audio id="birthdayAudio" loop>
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+
+  <p class="subtitle">النهارده يوم مش عادي أبداً ❤️</p>
+
+  <div class="name">محمد سالم</div>
+
+  <div class="age">17</div>
+
+  <h2 style="color:#ffd76a">سنة جديدة.. وأحلام أكبر! ✨</h2>
+
+  <div class="cake">🎂</div>
+
+  <p class="subtitle">
+    كل سنة وأنت طيب يا محمد ❤️
+    <br>
+    17 سنة من الفرحة والنجاح
+    <br>
+    وعقبال مليون سنة كلها سعادة! 🎊
+  </p>
+
+  <button onclick="showMessage()">
+    🎁 افتح هديتك
+  </button>
+
+  <button onclick="celebrate()">
+    🎆 احتفل!
+  </button>
+
+  <button onclick="playBirthday()" id="musicBtn">
+    🎵 شغل أغنية عيد الميلاد
+  </button>
+
+  <p class="music-status" id="musicStatus">
+    اضغط لتشغيل أغنية عيد الميلاد 🎶
+  </p>
+
+  <div class="message" id="message">
+    🎉 عيد ميلاد سعيد يا محمد سالم 🎉
+    <br>
+    النهارده كملت 17 سنة!
+    <br>
+    أتمنى تكون سنة مليانة نجاح وتوفيق
+    وتحقيق لكل أحلامك.
+    <br>
+    خليك دايماً قوي ومميز،
+    واللي جاي أحلى بإذن الله ❤️
+    <br>
+    🎂 HAPPY 17TH BIRTHDAY 🎂
+  </div>
+
+  <footer>
+    Made with ❤️ for Mohamed Salem
+    <br><br>
+    © 2026
+  </footer>
+
+</div>
+
+<script>
+
+// تشغيل وإيقاف الموسيقى
+const audio = document.getElementById("birthdayAudio");
+
+async function playBirthday() {
+  const btn = document.getElementById("musicBtn");
+  const status = document.getElementById("musicStatus");
+
+  if (audio.paused) {
+    try {
+      await audio.play();
+      btn.innerHTML = "⏸ إيقاف الأغنية";
+      status.innerHTML = "🎶 الأغنية تعمل الآن.. كل سنة وأنت طيب!";
+    } catch (error) {
+      status.innerHTML = "تأكد من وجود ملف birthday.mp3 بجانب الصفحة";
+    }
+  } else {
+    audio.pause();
+    btn.innerHTML = "🎵 شغل أغنية عيد الميلاد";
+    status.innerHTML = "تم إيقاف الأغنية";
+  }
+}
+
+// رسالة الهدية
+function showMessage() {
+  document.getElementById("message").style.display = "block";
+  celebrate();
+}
+
+// البالونات
+const balloonList = ["🎈","💜","💛","🎈","💙"];
+
+function createBalloon() {
+  const balloon = document.createElement("div");
+  balloon.className = "balloon";
+  balloon.innerHTML = balloonList[
+    Math.floor(Math.random() * balloonList.length)
+  ];
+
+  balloon.style.left = Math.random() * 100 + "vw";
+  balloon.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+  document.body.appendChild(balloon);
+
+  setTimeout(() => balloon.remove(), 12000);
+}
+
+setInterval(createBalloon, 750);
+
+// النجوم
+for (let i = 0; i < 40; i++) {
+  const star = document.createElement("div");
+
+  star.className = "star";
+  star.innerHTML = "✦";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.animationDelay = Math.random() * 2 + "s";
+
+  document.body.appendChild(star);
+}
+
+// الكونفيتي
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+let pieces = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+resize();
+window.addEventListener("resize", resize);
+
+function celebrate() {
+  for (let i = 0; i < 180; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: -20,
+      size: Math.random() * 8 + 3,
+      speed: Math.random() * 5 + 2,
+      color: `hsl(${Math.random() * 360},100%,60%)`,
+      rotation: Math.random() * 6
+    });
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  pieces.forEach((p, i) => {
+    p.y += p.speed;
+    p.rotation += .05;
+
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotation);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+    ctx.restore();
+
+    if (p.y > canvas.height + 20) {
+      pieces.splice(i, 1);
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// احتفال تلقائي عند فتح الصفحة
+setTimeout(celebrate, 500);
+
+</script>
+
+</body>
+</html>
